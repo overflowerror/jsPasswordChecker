@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+	<script src="jsPasswordChecker.js"></script>
+	<script src="testcases.js"></script>
+	<script>
+		window.onload = function() {
+			for (var i = 0; i < testcases.length; i++) {
+				var testcase = testcases[i];
+
+				var checker = new PasswordChecker(testcase.policies);
+
+				var result = true;
+				var error = "success";
+				try {
+					checker.check(testcase.password);
+				} catch (e) {
+					result = false;
+					error = e;
+				}
+
+				var el = document.createElement("div");
+				el.innerHTML = "Test Case " + i + " "
+				if (result != testcase.result) {
+					el.style.color = "red";
+					el.innerHTML += "failed (" + result + "; " + testcase.result + " expected)<br />";
+					el.innerHTML += " Password: " + testcase.password + "; Policies: " + testcase.policies + "; result: " + error;
+				} else {
+					el.style.color = "green";
+					el.innerHTML += "was successful.<br />";
+					el.innerHTML += " Password: " + testcase.password + "; Policies: " + testcase.policies + "; result: " + error;
+				}
+
+				document.body.appendChild(el);
+			}
+		}
+	</script>
+</head>
+<body>
+</body>
