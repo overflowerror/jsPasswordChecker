@@ -60,23 +60,23 @@ PasswordChecker.prototype.checkDictionary = function(password) {
 }
 
 PasswordChecker.prototype.checkCharacterRepetition = function(password) {
-	var repitition = this.policies.maxCharacterRepetition;
+	var repetition = this.policies.maxCharacterRepetition;
 
-	if (password.length > 0 && repitition <= 1)
+	if (password.length > 0 && repetition <= 1)
 		return; // policies don't make any sense
 
 	var currentChar = password.charAt(0);
-	var currentRepitition = 1;
+	var currentRepetition = 1;
 
 	for (var i = 1; i < password.length; i++) {
 		var tmp = password.charAt(i);
 		if (tmp === currentChar) {
-			currentRepitition++;
-			if (currentRepitition > repitition)
+			currentRepetition++;
+			if (currentRepetition > repetition)
 				throw "The password contains to many identical characters in a row.";
 		} else {
 			currentChar = tmp;
-			currentRepitition = 1;
+			currentRepetition = 1;
 		}
 	}
 }
